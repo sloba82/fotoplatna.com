@@ -1,0 +1,56 @@
+Statistics for fotoplatna.com    Date: 3/20/2014 11:45
+
+Main URL: http://www.fotoplatna.com/  (not case sensitive)
+
+Number of URLs listed total: 25
+Number of URLs listed to be included: 25
+Number of URLs listed to be crawled: 25
+Number of URLs still waiting in the crawler: 10 (may include some already listed)
+Number of URLs aborted in the crawler: 0
+
+Top 20 oldest included URLs:
+    http://www.fotoplatna.com/images/sp-meni.gif (439 days)
+    http://www.fotoplatna.com/images/spajser.jpg (439 days)
+    http://www.fotoplatna.com/images/razne-dim.jpg (439 days)
+    http://www.fotoplatna.com/images/primena.jpg (439 days)
+    http://www.fotoplatna.com/images/pozadina2.jpg (439 days)
+    http://www.fotoplatna.com/images/pozadina.jpg (439 days)
+    http://www.fotoplatna.com/images/logo.jpg (439 days)
+    http://www.fotoplatna.com/images/kontakt.jpg (439 days)
+    http://www.fotoplatna.com/images/izrada.jpg (439 days)
+    http://www.fotoplatna.com/images/cenovnik.jpg (439 days)
+    http://www.fotoplatna.com/images/baner.jpg (439 days)
+    http://www.fotoplatna.com/images/70x50.jpg (439 days)
+    http://www.fotoplatna.com/images/50x35.jpg (439 days)
+    http://www.fotoplatna.com/images/35x25.jpg (439 days)
+    http://www.fotoplatna.com/ (207 days)
+    http://www.fotoplatna.com/index.html (207 days)
+    http://www.fotoplatna.com/strane/35x25.html (23 days)
+    http://www.fotoplatna.com/strane/50x35.html (23 days)
+    http://www.fotoplatna.com/strane/70x50.html (23 days)
+
+Ban URLs with these texts in them from being crawled:
+
+
+Drop these parts of URLs being crawled:
+
+
+Remove these parameters when specified while being crawled:
+    osCsid
+    PhpSessId
+    PhpSessionId
+    s
+    Session
+    SessionId
+    SID
+    XTCsid
+
+ROBOTS.TXT from 1/5/2012 16:51:
+    User-agent: *
+    Allow: /
+    
+    
+
+
+End of data.
+
