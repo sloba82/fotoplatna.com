@@ -119,13 +119,13 @@ function sendMail($message, $urlprezent, $imgname )
 
 
     if (!$mail->send()) {
-        return 1;
+        echo "mesa not send";
     } else {
-        return 0;
+       echo "mess sent";
 
     }
 
-   header('Location: '.$urlprezent);
+  return header('Location: '.$urlprezent);
 
 
 }
