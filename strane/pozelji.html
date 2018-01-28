@@ -567,12 +567,35 @@ za frizerske salone banke opštine liksuzne sliko uredjenje enterijera" />
 </head>
 
 <body>
+
+
+
+
+<div id="notification" style="width: 100%; height: 100%; z-index: 1000; background-color: rgba(0,0,0,0.3); position: fixed; display: none;">
+
+	<div style="width: 33%; height: 33%; top: 33%;left: 33%; position: relative; background-color: #FFFFFF">
+
+		<h2 style="color: black; padding:25%;">Molimo sačekajte...</h2>
+	</div>
+
+</div>
+
+
+
+
+
+
 <div id="pozadina"><img src="../images/pozadina.jpg" width="580" height="549" /></div>
 <div id="apDiv30" style="position: absolute; left: 351px; top: 178px">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td nowrap="nowrap">
-		<form action="/cgi-sys/FormMail.cgi" method="post" name="foto" id="foto" enctype="multipart/form-data" target="_parent">
+		<form action="submitForm.php" method="post" name="foto" id="foto" enctype="multipart/form-data" target="_parent">
+
+
+			<input type="hidden" name="urlprezent" id="urlprezent">
+
+
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
 		<input type="text" name="name" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt">
@@ -595,7 +618,7 @@ za frizerske salone banke opštine liksuzne sliko uredjenje enterijera" />
 		<input type="text" name="phone" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt">
 		Kontakt Telefon</font></p>
 		<p><font size="1" face="Tahoma">
-		  <select size="1" name="dimenzije">
+		  <select size="1" name="size">
 		    <option selected="selected">Odaberi dimenziju</option>
 		    <option>140x60 cm - 3700 din.</option>
 		    <option>100x70 cm - 2800 din.</option>
@@ -614,15 +637,15 @@ za frizerske salone banke opštine liksuzne sliko uredjenje enterijera" />
 		<font style="font-size: 9pt" face="Tahoma">Odaberi 
 		dimenziju </font><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
-		<input type="text" name="dimZELJA" size="18" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px" value="ili upiši dim. po želji"></font></span></font></span></font></p>
+		<input type="text" name="sizeOddemond" size="18" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px" value="ili upiši dim. po želji"></font></span></font></span></font></p>
 		<p><font face="Tahoma">Javi cenu: SMS
-		<input type="checkbox" name="javiCenuSMS" value="ON">, E-mail
-		<input type="checkbox" name="javiCenuMail" value="ON"></font></p>
+		<input type="checkbox" name="priceSms" value="ON">, E-mail
+		<input type="checkbox" name="priceMail" value="ON"></font></p>
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
-		<input type="file" name="F1" size="20"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
+		<input type="file" name="fileToUpload" size="20"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt">
 		Pošalji digitalnu fotografiju</font></p>
-		<p><font size="1"><input type="submit" value="Submit" name="B1" /><input type="reset" value="Reset" name="B2" /></font></p>
+		<p><font size="1"><input type="submit" value="Submit" name="B1" onclick="startform()" /><input type="reset" value="Reset" name="B2" /></font></p>
 		<input type="hidden" name="recipient" value="platna@fotoplatna.com" /><input type=hidden name="redirect" value="http://www.fotoplatna.com/strane/pozelji.html"></form>&nbsp;</td>
     </tr>
   </table>
@@ -669,7 +692,7 @@ za frizerske salone banke opštine liksuzne sliko uredjenje enterijera" />
 <div id="apDiv21">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td nowrap="nowrap"><h3><a href="../index.html" target="_parent">Početna</a> <span class="g">|</span> <span class="a"><a href="pozelji.html">Poručivanje</a> </span><span class="g">|</span><span class="a"> <a href="cenovnik.html" target="_parent">Cenovnik</a> </span><span class="g">|</span><span class="a"> <a href="kontakt.html" target="_parent">Kontakt</a></span> <span class="g1">|</span> <a href="slike_na_platnu.html" target="_parent">Galerija</a></h3></td>
+      <td nowrap="nowrap"><h3><a href="../index.html" target="_parent">Početna</a> <span class="g">|</span> <span class="a"><a href="pozelji.php">Poručivanje</a> </span><span class="g">|</span><span class="a"> <a href="cenovnik.html" target="_parent">Cenovnik</a> </span><span class="g">|</span><span class="a"> <a href="kontakt.html" target="_parent">Kontakt</a></span> <span class="g1">|</span> <a href="slike_na_platnu.html" target="_parent">Galerija</a></h3></td>
     </tr>
   </table>
 </div>
@@ -698,4 +721,15 @@ za frizerske salone banke opštine liksuzne sliko uredjenje enterijera" />
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=200605829991841";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+	document.getElementById('urlprezent').value = window.location.href;
+
+	function startform() {
+		document.getElementById("notification").style.display = "block";
+	}
+
+</script>
+
+
 </html>
