@@ -11,20 +11,20 @@ date_default_timezone_set('Etc/UTC');
 
 require '../PHPMailer/PHPMailerAutoload.php';
 
-$urlprezent = $_POST['urlprezent'];
 
-$message = "Ime: ". $_POST['name'] . "<br>";
-$message .= "Adresa: ". $_POST['addres'] . "<br>";
-$message .= "Grad : ". $_POST['city'] . "<br>";
-$message .= "Email : ". $_POST['email'] . "<br>";
-$message .= "Phone : ". $_POST['phone'] . "<br>";
-$message .= "Dimenzije : ". $_POST['size'] . "<br>";
-$message .= "Dimenzije po zahtevu : ". $_POST['sizeOddemond'] . "<br>";
-$message .= "Cenu javi sms-om : ". $_POST['priceSms'] . "<br>";
-$message .= "Cenu javi Email : ". $_POST['priceMail'] . "<br>";
-$message .= "Komentar : ". $_POST['napomena'] . "<br>";
 
-$img = $_FILES['fileToUpload']['name'];
+ $urlprezent = $_POST['urlprezent'];
+
+
+$message;
+foreach($_POST as $key => $value) {
+    if ($value == '') {
+        $value = "NODATA";
+    }
+    $message .= $key.": "." ".$value."<br>";
+}
+
+    $img = $_FILES['fileToUpload']['name'];
 
     // name for image
     $name = trim($_POST['name']);
@@ -33,15 +33,9 @@ $img = $_FILES['fileToUpload']['name'];
 
 
 
-
-if (isset($_FILES['fileToUpload']['name'])){
     $imgname = imgupload($img, $name, $urlprezent );
-    sendMail($message, $urlprezent, $imgname);
 
-} else {
-    die();
-}
-
+     sendMail($message, $urlprezent, $imgname);
 
 
 
@@ -62,7 +56,16 @@ function imgupload ($img, $name, $urlprezent ){
 
 }
 
+function deletefile($imgname){
 
+    $files = glob('../upload/'.$imgname);
+
+        if(is_file($files)) {
+            unlink('../upload/'.$imgname);
+        }
+
+
+}
 
 
 
@@ -72,7 +75,7 @@ function sendMail($message, $urlprezent, $imgname )
     $mail = new PHPMailer;
     $mail->isSMTP();
 
-    $mail->SMTPDebug = 2; //Enable SMTP debugging, 0 = off (for production use), 1 = client messages, 2 = client and server messages
+    $mail->SMTPDebug = 0; //Enable SMTP debugging, 0 = off (for production use), 1 = client messages, 2 = client and server messages
     $mail->Debugoutput = 'html';
 
     $mail->Host = 'smtp.gmail.com';
@@ -116,9 +119,9 @@ function sendMail($message, $urlprezent, $imgname )
 
 
     if (!$mail->send()) {
-        echo "Message not sent";
+        return 1;
     } else {
-        echo "Message sent!";
+        return 0;
 
     }
 
