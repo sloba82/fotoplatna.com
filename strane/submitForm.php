@@ -44,9 +44,6 @@ if (  $_POST['name'] != '' ){
                 if (sendMail($message, $imgname) == 1) {
                     deletefile($imgname);
                 }
-                    
-
-
     }        
 
 
@@ -83,7 +80,7 @@ if (  $_POST['name'] != '' ){
     {
 
         $mail = new PHPMailer;
-        $mail->isSMTP();
+      /*  $mail->isSMTP();*/
 
         $mail->SMTPDebug = 0; //Enable SMTP debugging, 0 = off (for production use), 1 = client messages, 2 = client and server messages
         $mail->Debugoutput = 'html';

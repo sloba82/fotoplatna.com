@@ -529,6 +529,23 @@ a {
 </head>
 
 <body>
+
+
+
+
+<div id="notification" style="width: 100%; height: 100%; z-index: 1000; background-color: rgba(0,0,0,0.3); position: fixed; display: none;">
+
+	<div style="width: 33%; height: 33%; top: 33%;left: 33%; position: relative; background-color: #FFFFFF">
+
+		<h2 style="color: black; padding:25%;">Molimo sačekajte...</h2>
+	</div>
+
+</div>
+
+
+
+
+
 <div id="pozadina"><img src="../images/pozadina.jpg" alt="fotografije na kanvasu" width="580" height="549" /></div>
 <div id="heder">
   <table width="100%" height="151" border="0" cellpadding="0" cellspacing="0">
@@ -575,14 +592,17 @@ a {
 <div id="apDiv26"></div>
 <div id="apDiv27"></div>
 <div id="apDiv30">
-<form action="/cgi-sys/FormMail.cgi" method="post" name="foto" id="foto" enctype="multipart/form-data" target="_parent">
+<form action="submitForm.php" method="post" name="foto" id="foto" enctype="multipart/form-data" target="_parent">
+
+<input type="hidden" name="urlprezent" id="urlprezent">
+
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
-		<input type="text" name="ime" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
+		<input type="text" name="name" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
 		<font color="#000000">Ime i prezime</font></font></p>
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
-		<input type="text" name="mesto" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
+		<input type="text" name="city" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
 		<font color="#000000">Mesto </font> </font></p>
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
@@ -590,13 +610,12 @@ a {
 		<font color="#000000">E-mail</font></font></span></font></span></font></p>
 		<p><font size="1" face="Tahoma"><span style="font-size: 2pt">
 		<font size="1"><span style="font-size: 9pt"><font face="Tahoma">
-		<input type="text" name="tel" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
+		<input type="text" name="phone" size="40" style="color: #FF6600; border: 1px solid #99CCFF; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"></font></span></font></span></font><font face="Tahoma" style="font-size: 9pt"> 
 		<font color="#000000">Kontakt Telefon</font></font></p>
 		<p><font face="Tahoma">
 		<textarea rows="3" name="poruka" cols="30" style="color: #000000; border: 1px solid #000000; background-color: #F7F5F1">Vaša poruka</textarea></font></p>
 		<p><font size="1"><input type="submit" value="Submit" name="B1" /><input type="reset" value="Reset" name="B2" /></font></p>
-		<input type="hidden" name="recipient" value="platna@fotoplatna.com" />
-		<input type="hidden" name="redirect" value="http://www.fotoplatna.com/strane/kontakt.html"></form></div>
+</form></div>
 <div id="apDiv31">
   <h4><strong>Mob. 064/2465848</strong></h4>
   <h4><strong>E-mail:</strong> dizajnistampa@gmail.com</h4>
@@ -617,4 +636,38 @@ a {
   })();
 
 </script>
+
+
+
+<script type="text/javascript">
+	document.getElementById('urlprezent').value = window.location.href;
+
+	function startform() {
+		var name = document.getElementsByName("name");	
+		var phone = document.getElementsByName("phone");	
+
+		if (name=='' || phone=='' ) {
+			alert("Popunite polja u porudzbenici");
+		}else{
+
+			document.getElementById("notification").style.display = "block";
+		}
+	}
+
+	var urlMessage = document.getElementById('urlprezent').value;	
+	var message = urlMessage.split('?')[1];
+
+	if (message == 'message=no_susses') {
+		alert("Popunite polja u kontakt formi");
+	}
+
+	if (message == 'message=susses') {
+		alert("Poruka uspesno poslataa");
+	}
+	
+	
+
+</script>
+
+
 </html>
