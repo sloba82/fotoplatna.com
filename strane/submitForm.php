@@ -16,36 +16,35 @@ $urlprezent = strtok($urlprezent, '?');
 
 if (  $_POST['name'] != '' ){
 
-        getPostAndSendMail();
-        header('Location: '.$urlprezent.'?message=susses');
+    getPostAndSendMail();
+    header('Location: '.$urlprezent.'?message=susses');
 
 }else {
-        header('Location: '.$urlprezent.'?message=no_susses');
-        die();
+    header('Location: '.$urlprezent.'?message=no_susses');
+    die();
 }
  
-    function getPostAndSendMail() {   
+    function getPostAndSendMail(){   
 
-            $message;
-            foreach($_POST as $key => $value) {
-                if ($value == '') {
-                    $value = "NODATA";
-                }
-                $message .= $key.": "." ".$value."<br>";
+        $message;
+        foreach($_POST as $key => $value) {
+            if ($value == '') {
+                $value = "NODATA";
             }
-             $img = $_FILES['fileToUpload']['name'];
+            $message .= $key.": "." ".$value."<br>";
+        }
+         $img = $_FILES['fileToUpload']['name'];
 
-                // name for image
-                $name = trim($_POST['name']);
-                $name = str_replace(' ', '_', $name);
-                $name .= time();
-             
-                $imgname = imgupload($img, $name);
-                if (sendMail($message, $imgname) == 1) {
-                    deletefile($imgname);
-                }
+            // name for image
+            $name = trim($_POST['name']);
+            $name = str_replace(' ', '_', $name);
+            $name .= time();
+         
+            $imgname = imgupload($img, $name);
+            if (sendMail($message, $imgname)) {
+                deletefile($imgname);
+            }
     }        
-
 
     function imgupload($img, $name){
         $info = pathinfo($img);
@@ -60,27 +59,20 @@ if (  $_POST['name'] != '' ){
     }
 
     function deletefile($imgname){
+         
+        sleep(2);
 
-     /*  fclose("../upload/".$imgnam);
-        unlink("../upload/".$imgnam);*/
-          
-            sleep(2);
-
-            $path = '../upload/'.$imgname;
-            if(file_exists($path) && is_readable($path)) {
-                unlink($path);
-            }
-
-     
+        $path = '../upload/'.$imgname;
+        if(file_exists($path) && is_readable($path)) {
+            unlink($path);
+        }
+ 
     }
 
-
-
-    function sendMail($message, $imgname )
-    {
+    function sendMail($message, $imgname ){
 
         $mail = new PHPMailer;
-      /*  $mail->isSMTP();*/
+         $mail->isSMTP();
 
         $mail->SMTPDebug = 0; //Enable SMTP debugging, 0 = off (for production use), 1 = client messages, 2 = client and server messages
         $mail->Debugoutput = 'html';
@@ -107,9 +99,9 @@ if (  $_POST['name'] != '' ){
         $mail->addAttachment($atacment);
 
         if (!$mail->send()) {
-            echo "message  not sent";
+            return 9;
         } else {
-            return 1;;
+            return 1;
 
         }
 
