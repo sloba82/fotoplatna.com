@@ -11,6 +11,7 @@ date_default_timezone_set('Etc/UTC');
 
 require '../PHPMailer/PHPMailerAutoload.php';
 
+
 $urlprezent = $_POST['urlprezent'];
 $urlprezent = strtok($urlprezent, '?');
 
@@ -71,8 +72,10 @@ if (  $_POST['name'] != '' ){
 
     function sendMail($message, $imgname ){
 
+        include 'pass.php';
         $mail = new PHPMailer;
-         $mail->isSMTP();
+
+        $mail->isSMTP();
 
         $mail->SMTPDebug = 0; //Enable SMTP debugging, 0 = off (for production use), 1 = client messages, 2 = client and server messages
         $mail->Debugoutput = 'html';
@@ -88,8 +91,8 @@ if (  $_POST['name'] != '' ){
                 'allow_self_signed' => true
             )
         );
-        $mail->Username = "dizajnistampa@gmail.com";
-        $mail->Password = "82slobadragana";
+        $mail->Username = $email;
+        $mail->Password = $pass;
         $mail->setFrom('dizajnistampa@gmail.com', 'web');
         $mail->addAddress('dizajnistampa@gmail.com', 'print');
         $mail->Subject = 'Fotoplatna poruka';
